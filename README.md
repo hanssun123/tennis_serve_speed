@@ -3,19 +3,27 @@ This project uses the CSRT tracker from the OpenCV library to track a tennis bal
 
 ![image](https://user-images.githubusercontent.com/25471763/129860575-3ce71bcd-3f1c-48c8-a8b4-bb8981373f3e.png)
 
-Video must be recorded at 240fps (capable on newer iPhones) for accurate speed measurement, but the input video may be at any framerate as long as the total number of frames is the same (1 second video at 240fps is the same as 10 second video at 24fps). The tracker may perform slightly better at lower fps due to frame buffering issues at extremely high fps.
+Video must be recorded at 240fps (capable on newer iPhones) for accurate speed measurement, but the input video may be at any framerate as long as the total number of frames is the same (1 second video at 240fps is the same as 10 second video at 24fps, at .1x speed).
 
 # How to Use
-Install OpenCV, statsmodels, and NumPy.
+Install OpenCV 4, statsmodels, and NumPy.
 
-To obtain service speed, first record a video of the service at 240fps with the closest service line directly on the left edge of the camera's field of view. The line should be parallel or close to parallel with the edge of your screen when recording. 
+To obtain service speed, first record a video of the service at 240fps with the closest service line directly on the left edge of the camera's field of view. The line should be parallel or close to parallel with the edge of your screen when recording. For best results, make sure that the background and the tennis racket contrast from the tennis ball's color so that the tracker can accurately track the ball. Videos taken at night as well as videos taken against a blue sky work well.
 
 ![image](https://user-images.githubusercontent.com/25471763/129860865-baeb59af-28d5-47f6-963b-fb72860af325.png)
 
 
-Run `python opencv_ball_tracker.py -v [video_name]` to open a GUI. Select the window and press `s` before the server makes impact with the ball, and select the tennis ball with the mouse. Make sure the selection rectangle is as small as possible but contains the tennis ball entirely for best results. 
+Run `python opencv_ball_tracker.py -v [video_name]` to open a GUI. Select the window and press `s` before the server makes impact with the ball, and select the tennis ball with the mouse. Make sure the selection rectangle is as small as possible but contains the tennis ball entirely for best results.
 
 ![image](https://user-images.githubusercontent.com/25471763/129862348-bc997d73-baaa-4fba-88a2-f9139f61db79.png)
+
+For higher speed serves, a selection rectangle elongated along the x-axis can help the tracking algorithm follow the ball better after impact since the ball has motion blur along the direction of travel after impact. However, try to estimate the left boundary of the selection rectangle as close as possible to the extent of the blur, since this is where the algorithm tracks the ball's coordinates to be.
+
+![image](https://user-images.githubusercontent.com/25471763/130412579-db75b1eb-347f-404b-9791-904e5b12b69e.png)
+
+![image](https://user-images.githubusercontent.com/25471763/130417153-094df785-6c05-41b7-8184-0b70748d4b9b.png)
+
+
 
 Press `space` or `enter` to allow the video to finish playing, which may take a few seconds due to slower playback while tracking. After the ball exits the left side of the screen, you can press `q` to immediately exit in case the video continues for a while. A data file will be generated. Next, run `python speed_analyzer.py` to analyze the data file and obtain service speed. 
 
