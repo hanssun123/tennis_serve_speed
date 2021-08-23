@@ -13,6 +13,8 @@ Video must be recorded at 240fps (capable on newer iPhones) for accurate speed m
 # How to Use
 Install OpenCV 4, statsmodels, and NumPy.
 
+[Click here for sample videos.](https://drive.google.com/drive/folders/1EAI9koL9BpsOlP4egxFVASWH3XT4R_61?usp=sharing)
+
 To obtain service speed, first record a video of the service at 240fps with the closest service line directly on the left edge of the camera's field of view. The line should be parallel or close to parallel with the edge of your screen when recording. For best results, make sure that the background and the tennis racket contrast from the tennis ball's color so that the tracker can accurately follow the ball (bright green/yellow foliage behind the ball's path are not ideal). Videos taken at night as well as videos taken against a blue sky work well. Although not tested, a pink tennis ball (manufacturers make these to support breast cancer research) would probably also work well.
 
 ![image](https://user-images.githubusercontent.com/25471763/129860865-baeb59af-28d5-47f6-963b-fb72860af325.png)
